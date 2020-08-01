@@ -64,8 +64,7 @@ class Role extends BaseApi
         // 添加数据
         $params['role_auth_ids'] = $params['role_ids'];
         $role                    = ModelRole::create($params, true);
-        dump($role);
-        $info = ModelRole::find($role['id']);
+        $info                    = ModelRole::find($role['id']);
 
         $this->ResSuccess($info);
     }

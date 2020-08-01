@@ -34,3 +34,7 @@ Route::get('nav', 'adminapi/auth/nav');
 Route::resource('roles', 'adminapi/role', [], ['id' => '\d+']);
 // 管理员
 Route::resource('admins', 'adminapi/admin', [], ['id' => '\d+']);
+// 商品分类
+Route::resource('categorys', 'adminapi/category', [], ['id' => '\d+']);
+// 品牌分类
+Route::resource('brands', 'adminapi/brand', [], ['id' => '\d+']);

@@ -2,6 +2,7 @@
 
 namespace app\adminapi\controller;
 
+use app\adminapi\logic\AuthLogic;
 use think\Controller;
 use tools\jwt\Token;
 
@@ -13,7 +14,6 @@ class BaseApi extends Controller
 
     protected function initialize()
     {
-
         // 父类初始化
         parent::initialize();
 
@@ -29,12 +29,14 @@ class BaseApi extends Controller
             if (!in_array($path, self::$white)) {
                 // 需要做登录判断
                 $this->user_id = Token::getUserId();
-                var_dump($this->user_id);
-                // $user_id = 1;
                 if (empty($this->user_id)) {
                     $this->fail('token验证失败', 403);die;
                 }
-
+                // 权限检测
+                $auth_check = AuthLogic::check();
+                if (!$auth_check) {
+                    $this->fail('没有权限访问');
+                }
             }
         } catch (\Exception $e) {
             //throw $th;
@@ -83,8 +85,9 @@ class BaseApi extends Controller
      * @param 响应信息 $msg
      * @return void
      */
-    protected function fail($msg = "error", $code = 400)
+    protected function fail($msg = "error", $code = 401)
     {
         $this->response($code, $msg);
     }
+
 }

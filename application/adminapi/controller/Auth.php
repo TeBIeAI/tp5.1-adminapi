@@ -62,10 +62,9 @@ class Auth extends BaseApi
      */
     public function save(Request $request)
     {
-        echo 'aaa';
-
         // 接收数据
         $params = input();
+
         // 参数检测
         $validate = $this->validate($params, [
             'auth_name|权限名称' => 'require',

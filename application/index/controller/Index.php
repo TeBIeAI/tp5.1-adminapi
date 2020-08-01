@@ -16,10 +16,10 @@ class Index extends BaseApi
 
         // return 'hello,';
         // return $this->fail('请求失败');
-        $token = \tools\jwt\Token::getToken(200);
-        dump($token);
+        // $token = \tools\jwt\Token::getToken(200);
+        // dump($token);
 
-        $user_id = \tools\jwt\Token::getUserId($token);
-        dump($user_id);
+        // $user_id = \tools\jwt\Token::getUserId($token);
+        // dump($user_id);
     }
 }
